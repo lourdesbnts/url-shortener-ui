@@ -13,7 +13,7 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    getUrls()
+    return getUrls()
     .then((data) => {
       this.setState({ urls: data.urls})
     })
@@ -22,12 +22,16 @@ export class App extends Component {
     })
   }
 
+  addURL = (newURL) => {
+    this.setState({urls: [...this.state.urls, newURL]})
+  }
+
   render() {
     return (
       <main className="App">
         <header>
           <h1>URL Shortener</h1>
-          <UrlForm />
+          <UrlForm addURL={this.addURL}/>
         </header>
 
         <UrlContainer urls={this.state.urls}/>
