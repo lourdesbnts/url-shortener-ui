@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class UrlForm extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.props = props;
     this.state = {
       title: '',
@@ -16,6 +16,10 @@ class UrlForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const newURL = {
+      id: Date.now(),
+      ...this.state
+    }
     this.clearInputs();
   }
 
